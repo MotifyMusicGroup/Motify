@@ -7,7 +7,7 @@
 #define BITCOIN_COMPAT_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/gpkr-config.h"
+#include "config/TNX-config.h"
 #endif
 
 #ifdef WIN32

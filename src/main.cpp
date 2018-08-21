@@ -3,7 +3,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The Gpkr developers
+// Copyright (c) 2018 The TNX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,7 +47,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "Gpkr cannot be compiled without assertions."
+#error "TNX cannot be compiled without assertions."
 #endif
 
 // 6 comes from OPCODE (1) + vch.size() (1) + BIGNUM size (4)
@@ -81,7 +81,7 @@ bool fAlerts = DEFAULT_ALERTS;
 unsigned int nStakeMinAge = 60 * 60;
 int64_t nReserveBalance = 0;
 
-/** Fees smaller than this (in ugpkr) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in uTNX) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -1617,56 +1617,68 @@ double ConvertBitsToDouble(unsigned int nBits)
 
 int64_t GetBlockValue(int nHeight)
 {
+    
     int64_t nSubsidy = 0;
 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < Params().LAST_POW_BLOCK() && nHeight > 0)
-            return 50000 * COIN; // Testnet rewards
+        if (nHeight < 50 && nHeight > 0)
+            return 1000000 * COIN;
     }
 
-    if (nHeight == 0) {
-        nSubsidy = 0 * COIN; // Genesis block
-      }
-    else if (nHeight == 1) {
-        nSubsidy = 1100000 * COIN; // Premine
+    
+    if (nHeight == 1) {
+        nSubsidy = 850000 * COIN; // Premine
     }
-    else if (( nHeight % 10 ) == 3) {
-        nSubsidy = 33 * COIN; // Superblock
+    else if (nHeight > 1 && nHeight <= 200) { // Premine
+        nSubsidy =  250* COIN; 
+    }
+    else if (nHeight > 200 && nHeight <= 400) {   // Instamine
+        nSubsidy = 1 * COIN;
+    }
+    else if (nHeight > 400 && nHeight <= 1499) { // Instamine
+        nSubsidy = 1 * COIN; 
+    }
+    else if (nHeight > 1499 && nHeight <= 210000) { // Full Rewards 
+        nSubsidy = 18 * COIN; 
+    }
+    else if (nHeight > 210000 && nHeight <= 420000) {
+        nSubsidy = 24 * COIN; 
+    }
+    else if (nHeight > 420000 && nHeight <= 630000) {
+        nSubsidy = 21 * COIN;
+    }
+    else if (nHeight > 630000 && nHeight <= 840000) {
+        nSubsidy = 18 * COIN; 
+    }
+    else if (nHeight > 840000 && nHeight <= 1050000) {
+        nSubsidy = 15 * COIN; 
+    }
+    else if (nHeight > 1050000 && nHeight <= 1260000) {
+        nSubsidy = 5 * COIN; 
     }
     else {
-      nSubsidy = 3.3 * COIN; // Normal block
+    nSubsidy = 0 * COIN; 
     }
-
-    // Check if we reached the coin max supply.
-    int64_t nMoneySupply = chainActive.Tip()->nMoneySupply;
-
-    if (nMoneySupply + nSubsidy >= Params().MaxMoneyOut())
-        nSubsidy = Params().MaxMoneyOut() - nMoneySupply;
-
-    if (nMoneySupply >= Params().MaxMoneyOut())
-        nSubsidy = 0;
-
-    return nSubsidy;
+    
+    
+	return nSubsidy;
 }
-
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
     int64_t ret = 0;
 
-    // No rewards till masternode activation.
-    if (nHeight < Params().LAST_POW_BLOCK() || blockValue == 0)
-        return 0;
+    if (Params().NetworkID() == CBaseChainParams::TESTNET) {
+        if (nHeight < 200)
+            return 0;
+    }
 
-	if (( nHeight % 10 ) == 3) {
-        ret = 30 * COIN; // Superblock
+    if (nHeight > 1) {
+        ret = blockValue * .65;
     }
-    else {
-		ret = 3 * COIN; // Normal block
-    }
-	
-	return ret;
-    
+
+    return ret;
 }
+
 
 bool IsInitialBlockDownload()
 {
@@ -2053,7 +2065,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("gpkr-scriptch");
+    RenameThread("TNX-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3149,7 +3161,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // GPKR
+        // TNX
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -4582,7 +4594,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             return false;
         }
 
-        // GPKR: We use certain sporks during IBD, so check to see if they are
+        // TNX: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) &&
                 !pSporkDB->SporkExists(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2);

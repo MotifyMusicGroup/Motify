@@ -72,15 +72,15 @@ bin_PROGRAMS =
 TESTS =
 
 if BUILD_BITCOIND
-  bin_PROGRAMS += gpkrd
+  bin_PROGRAMS += TNXd
 endif
 
 if BUILD_BITCOIN_UTILS
-  bin_PROGRAMS += gpkr-cli gpkr-tx
+  bin_PROGRAMS += TNX-cli TNX-tx
 endif
 
 .PHONY: FORCE
-# Gold Poker Core #
+# Toran Core #
 BITCOIN_CORE_H = \
   bignum.h \
   activemasternode.h \
@@ -183,7 +183,7 @@ obj/build.h: FORCE
 	  $(abs_top_srcdir)
 libbitcoin_util_a-clientversion.$(OBJEXT): obj/build.h
 
-# server: shared between gpkrd and gpkr-qt
+# server: shared between TNXd and TNX-qt
 libbitcoin_server_a_CPPFLAGS = $(BITCOIN_INCLUDES) $(MINIUPNPC_CPPFLAGS) $(EVENT_CFLAGS) $(EVENT_PTHREADS_CFLAGS)
 libbitcoin_server_a_SOURCES = \
   addrman.cpp \
@@ -228,7 +228,7 @@ libbitcoin_zmq_a_SOURCES = \
   zmq/zmqpublishnotifier.cpp
 endif
 
-# wallet: shared between gpkrd and gpkr-qt, but only linked
+# wallet: shared between TNXd and TNX-qt, but only linked
 # when wallet enabled
 
 libbitcoin_wallet_a_CFLAGS = -fPIC
@@ -290,7 +290,7 @@ crypto_libbitcoin_crypto_a_SOURCES = \
   crypto/sph_skein.h \
   crypto/sph_types.h
 
-# common: shared between gpkrd, and gpkr-qt and non-server tools
+# common: shared between TNXd, and TNX-qt and non-server tools
 libbitcoin_common_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_common_a_SOURCES = \
   allocators.cpp \
@@ -348,7 +348,7 @@ libbitcoin_util_a_SOURCES += compat/glibc_compat.cpp
 libbitcoin_util_a_SOURCES += compat/glibcxx_compat.cpp
 endif
 
-# cli: shared between gpkr-cli and gpkr-qt
+# cli: shared between TNX-cli and TNX-qt
 libbitcoin_cli_a_CPPFLAGS = $(BITCOIN_INCLUDES)
 libbitcoin_cli_a_SOURCES = \
   rpcclient.cpp \
@@ -358,7 +358,7 @@ nodist_libbitcoin_util_a_SOURCES = $(srcdir)/obj/build.h
 #
 
 # bitcoind binary #
-gpkrd_LDADD = \
+TNXd_LDADD = \
   $(LIBBITCOIN_SERVER) \
   $(LIBBITCOIN_COMMON) \
   $(LIBUNIVALUE) \
@@ -369,26 +369,26 @@ gpkrd_LDADD = \
   $(LIBSECP256K1)
 
 if ENABLE_ZMQ
-gpkrd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
+TNXd_LDADD += $(LIBBITCOIN_ZMQ) $(ZMQ_LIBS)
 endif
 
 if ENABLE_WALLET
-gpkrd_LDADD += libbitcoin_wallet.a
+TNXd_LDADD += libbitcoin_wallet.a
 endif
-gpkrd_SOURCES = gpkrd.cpp
+TNXd_SOURCES = TNXd.cpp
 #
 
 if TARGET_WINDOWS
-gpkrd_SOURCES += gpkrd-res.rc
+TNXd_SOURCES += TNXd-res.rc
 endif
 
-gpkrd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
-gpkrd_CPPFLAGS = $(BITCOIN_INCLUDES)
-gpkrd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+TNXd_LDADD += $(BOOST_LIBS) $(BDB_LIBS) $(SSL_LIBS) $(CRYPTO_LIBS) $(MINIUPNPC_LIBS) $(EVENT_PTHREADS_LIBS) $(EVENT_LIBS)
+TNXd_CPPFLAGS = $(BITCOIN_INCLUDES)
+TNXd_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 
-# gpkr-cli binary #
-gpkr_cli_LDADD = \
+# TNX-cli binary #
+TNX_cli_LDADD = \
   $(LIBBITCOIN_CLI) \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_UTIL) \
@@ -397,14 +397,14 @@ gpkr_cli_LDADD = \
   $(CRYPTO_LIBS) \
   $(EVENT_LIBS)
 
-gpkr_cli_SOURCES = \
-  gpkr-cli.cpp
+TNX_cli_SOURCES = \
+  TNX-cli.cpp
 
-gpkr_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
+TNX_cli_CPPFLAGS = $(BITCOIN_INCLUDES) $(EVENT_CFLAGS)
 #
 
-# gpkr-tx binary #
-gpkr_tx_LDADD = \
+# TNX-tx binary #
+TNX_tx_LDADD = \
   $(LIBUNIVALUE) \
   $(LIBBITCOIN_COMMON) \
   $(LIBBITCOIN_UTIL) \
@@ -413,15 +413,15 @@ gpkr_tx_LDADD = \
   $(BOOST_LIBS) \
   $(CRYPTO_LIBS)
 
-gpkr_tx_SOURCES = gpkr-tx.cpp
-gpkr_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
+TNX_tx_SOURCES = TNX-tx.cpp
+TNX_tx_CPPFLAGS = $(BITCOIN_INCLUDES)
 #
-gpkr_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+TNX_tx_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if TARGET_WINDOWS
-gpkr_cli_SOURCES += gpkr-cli-res.rc
+TNX_cli_SOURCES += TNX-cli-res.rc
 endif
-gpkr_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
+TNX_cli_LDFLAGS = $(RELDFLAGS) $(AM_LDFLAGS) $(LIBTOOL_APP_LDFLAGS)
 
 if BUILD_BITCOIN_LIBS
 include_HEADERS = script/bitcoinconsensus.h

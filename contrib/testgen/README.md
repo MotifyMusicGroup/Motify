@@ -1,6 +1,6 @@
 ### TestGen ###
 
-Utilities to generate test vectors for the data-driven Gpkr tests.
+Utilities to generate test vectors for the data-driven TNX tests.
 
 Usage: 
 

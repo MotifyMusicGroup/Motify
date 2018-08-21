@@ -96,7 +96,7 @@ public:
 };
 
 /**
- * Gpkr RPC command dispatcher.
+ * TNX RPC command dispatcher.
  */
 class CRPCTable
 {

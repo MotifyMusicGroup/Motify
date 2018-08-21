@@ -1,0 +1,26 @@
+# /etc/conf.d/TNXd: config file for /etc/init.d/TNXd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/TNX/TNX.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/TNXd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/TNXd.pid"
+
+# Where to write TNXd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/TNXd"
+
+# User and group to own TNXd process
+#BITCOIND_USER="TNX"
+#BITCOIND_GROUP="TNX"
+
+# Path to TNXd executable
+#BITCOIND_BIN="/usr/bin/TNXd"
+
+# Nice value to run TNXd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

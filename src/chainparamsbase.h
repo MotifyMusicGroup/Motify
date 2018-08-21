@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between gpkr-cli and gpkrd)
- * of a given instance of the Gpkr system.
+ * CBaseChainParams defines the base parameters (shared between TNX-cli and TNXd)
+ * of a given instance of the TNX system.
  */
 class CBaseChainParams
 {

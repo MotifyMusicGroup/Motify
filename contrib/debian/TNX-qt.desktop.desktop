@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=TNX
+Comment=TNX P2P Cryptocurrency
+Exec=TNX-qt %u
+Terminal=false
+Type=Application
+Icon=TNX128
+MimeType=x-scheme-handler/TNX;
+Categories=Office;Finance;
+Name[en_US]=TNX-qt.desktop

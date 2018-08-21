@@ -165,7 +165,7 @@ class Repairer {
       Logger* info_log;
       uint64_t lognum;
       virtual void Corruption(size_t bytes, const Status& s) {
-        // We print error messages for corruption, but continue repgpkrg.
+        // We print error messages for corruption, but continue repTNXg.
         Log(info_log, "Log #%llu: dropping %d bytes; %s",
             (unsigned long long) lognum,
             static_cast<int>(bytes),

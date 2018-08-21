@@ -3,7 +3,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The Gpkr developers
+// Copyright (c) 2018 The TNX developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -53,66 +53,74 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 //   (no blocks before with a timestamp after, none after with
 //    timestamp before)
 // + Contains no strange transactions
+
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000007a5e645d8b8dd5ca2decb3b371772978cad4015d47832a41b8085eaa3f3"));
+    (0, uint256("0x000001c2e559d9dca42faa174dc54647ce6f8c25947c71127f94246a6b04d2c5"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1530489600, // * UNIX timestamp of last checkpoint block
+    1534817842, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
-    0        // * estimated number of transactions per day after checkpoint
+    1000        // * estimated number of transactions per day after checkpoint
 };
 
 static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
     boost::assign::map_list_of
-    (0, uint256("0x000009f73c6faf5465e1cef3e029ed2a726cdf013163b91b9b4ecb6badd5b556"));
+    (0, uint256("0x00"));
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1530489601,
+    1534817842,
     0,
-    0};
+    100};
 
 static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     boost::assign::map_list_of
-    (0, uint256("0x5f38eb5967ef70b09b8164c98bcde68cf01dcf46435b83f5f66dc0de18196163"));
+    (0, uint256("0x00"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1530489602,
+    1534817842,
     0,
-    0};
+    100};
 
 
-static CBlock CreateGenesisBlock(const char* pszTimestamp, const CScript& genesisOutputScript, uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
+/*void MineGenesis(CBlock genesis)
 {
-    CMutableTransaction txNew;
-    txNew.nVersion = 1;
-    txNew.vin.resize(1);
-    txNew.vout.resize(1);
-    txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << std::vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
-    txNew.vout[0].nValue = genesisReward;
-    txNew.vout[0].scriptPubKey = genesisOutputScript;
+    printf("Searching for genesis block...\n");
+    // This will figure out a valid hash and Nonce if you're
+    // creating a different genesis block:
+    uint256 hashTarget = ~uint256(0) >> 20;
+    uint256 thash;
+    while(true)
+    {
+        thash = genesis.GetHash();
+        if (thash <= hashTarget)
+            break;
+        if ((genesis.nNonce & 0xFFF) == 0)
+        {
+            printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
+        }
+        ++genesis.nNonce;
+        if (genesis.nNonce == 0)
+        {
+            printf("NONCE WRAPPED, incrementing time\n");
+            ++genesis.nTime;
+        }
+    }
+    printf("block.nTime = %u \n", genesis.nTime);
+    printf("block.nNonce = %u \n", genesis.nNonce);
+    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
+    printf("block.merkle = %s\n", genesis.hashMerkleRoot.ToString().c_str());
+    std::cout << genesis.ToString() << std::endl;
+}*/
 
-    CBlock genesis;
-    genesis.nTime    = nTime;
-    genesis.nBits    = nBits;
-    genesis.nNonce   = nNonce;
-    genesis.nVersion = nVersion;
-    genesis.vtx.push_back(txNew);
-    genesis.hashPrevBlock.SetNull();
-    genesis.hashMerkleRoot = genesis.BuildMerkleTree();
-    return genesis;
-}
 
 
-static CBlock CreateGenesisBlock(uint32_t nTime, uint32_t nNonce, uint32_t nBits, int32_t nVersion, const CAmount& genesisReward)
-{
-    const char* pszTimestamp = "Gold Poker Genesis Block";
-    const CScript genesisOutputScript = CScript() << ParseHex("043e5a5fbfbb2caa5f4b7c8fd24d890d6c244de254d579b5ba629f64c1b48275f59e0e1c834a60f6ffb4aaa022aaa4866434ca729a12465f80618fb2070045cb16") << OP_CHECKSIG;
-    return CreateGenesisBlock(pszTimestamp, genesisOutputScript, nTime, nNonce, nBits, nVersion, genesisReward);
-}
+
+
+
 
 class CMainParams : public CChainParams
 {
@@ -126,52 +134,63 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xb2;
-        pchMessageStart[1] = 0xc9;
-        pchMessageStart[2] = 0xc3;
-        pchMessageStart[3] = 0xd4;
-        vAlertPubKey = ParseHex("04053a5ad7559f75deff42b85fc125d01f3fdfe22ce6b8ed5020446a079f899333be826473a76ba2f7c9c339d1a154fd4b26eed13eaa4b41ef49775f766eced847");
-        nDefaultPort = 33303;
+        pchMessageStart[0] = 0xa4;
+        pchMessageStart[1] = 0xb7;
+        pchMessageStart[2] = 0xd3;
+        pchMessageStart[3] = 0xa6;
+        vAlertPubKey = ParseHex("04c084aea7611895c60739852406604a97c221775df42f93e553a0480073f288844cfd42d8b9a6915f56fb46bb233fead12fbdc1db4aca5d390f951b00ac2da315");
+        nDefaultPort = 21208;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        nSubsidyHalvingInterval = 5256000;
+        nSubsidyHalvingInterval = 210000000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Gpkr: 2 blocks
-        nTargetSpacing = 1 * 33;  // Gpkr: 33 sec
+        nTargetTimespan = 1 * 60; // TNX: 2 blocks
+        nTargetSpacing = 1 * 60;  // TNX: 60 sec
         nMaturity = 10;
         nMasternodeCountDrift = 1;
-        nMaxMoneyOut = 33333333 * COIN;
+        nMaxMoneyOut = 21722591 * COIN;
+        nLastPOWBlock = 1499;
+        nModifierUpdateBlock = 1; // we use the version 2 for TNX
 
-        /** Height or Time Based Activations **/
-        nLastPOWBlock = 100;
-        nModifierUpdateBlock = 1; // we use the version 2 for GPKR
+	const char* pszTimestamp = "Toran Coin Genesis Block";
+        CMutableTransaction txNew;
+        txNew.vin.resize(1);
+        txNew.vout.resize(1);
+        txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
+        txNew.vout[0].nValue = 50 * COIN;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0417c3af2aa70c85c722100d28c49fde73d000793c633ff5d07a15c2c0cf642fa557cf7d45fcd53eb2c3174e045416103202bc41f5da1d886856ced2c5387901d7") << 	OP_CHECKSIG;
+	genesis.vtx.push_back(txNew);
+	genesis.hashPrevBlock = 0;
+	genesis.hashMerkleRoot = genesis.BuildMerkleTree();
+	genesis.nVersion = 1;
+	genesis.nTime    = 1534817842;
+   	genesis.nBits    = 0x1e0ffff0;
+    	genesis.nNonce   = 4085829; 	
 
-        genesis = CreateGenesisBlock(1530489600, 1209697, 0x1e0ffff0, 1, 50 * COIN);
-
+        //MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000007a5e645d8b8dd5ca2decb3b371772978cad4015d47832a41b8085eaa3f3"));
-        assert(genesis.hashMerkleRoot == uint256("0xb2de422ca09c5a4de0bd2e37b949feb74b06b7c38dd08e5ac18a6e7290d5c151"));
+        assert(hashGenesisBlock == uint256("0x000001c2e559d9dca42faa174dc54647ce6f8c25947c71127f94246a6b04d2c5"));
+        assert(genesis.hashMerkleRoot == uint256("0x0b8e0ae295a9f1379d0f03bef3461ac630d8fa64ffa5a1c43cec3e924c2949f3"));
 
         // DNS Seeding
-        vSeeds.push_back(CDNSSeedData("s1.gold-poker.com", "s1.gold-poker.com"));
-        vSeeds.push_back(CDNSSeedData("s2.gold-poker.com", "s2.gold-poker.com"));
-        vSeeds.push_back(CDNSSeedData("s3.gold-poker.com", "s3.gold-poker.com"));
-        vSeeds.push_back(CDNSSeedData("s4.gold-poker.com", "s4.gold-poker.com"));
+        vSeeds.push_back(CDNSSeedData("142.93.88.191", "142.93.27.82"));
+	vSeeds.push_back(CDNSSeedData("142.93.19.160", "142.93.88.29"));
+	vSeeds.push_back(CDNSSeedData("159.65.97.121", "142.93.117.170"));
 
-        // Gpkr addresses start with 'G'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 38);
-        // Gpkr script addresses start with '9'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 20);
-        // Gpkr private keys start with '9' or 'A'
+        // TNX addresses start with 'T'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 66);
+        // TNX script addresses start with 'T'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 66);
+        // TNX private keys start with '9' or 'A'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 22);
-        // Gpkr BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // TNX BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
-        // Gpkr BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // TNX BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        // Gpkr BIP44 coin type is '33303'
+        // TNX BIP44 coin type is '21208'
         //  BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x49)(0x85).convert_to_container<std::vector<unsigned char> >();
 
@@ -189,7 +208,7 @@ public:
         nPoolMaxTransactions = 3;
         strSporkKey = "0440f06498df74d80d33d258ec84a294bed7078557598c1c5d796909dc3d2dc4c2a6c3f066401b4e3a71cf583134d5c397efd07f2ff0dc2d14847befa89441c271";
         strMasternodePoolDummyAddress = "GQQ6cNVNg1R1A2e1AgtY1FPsh3d1wGekr7";
-        nStartMasternodePayments = genesis.nTime + 86400; // 24 hours after genesis creation
+        nStartMasternodePayments = genesis.nTime; 
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
     }
@@ -221,33 +240,33 @@ public:
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // Gpkr: 1 day
-        nTargetSpacing = 2 * 60;  // Gpkr: 1 minute
+        nTargetTimespan = 1 * 60; // TNX: 1 day
+        nTargetSpacing = 2 * 60;  // TNX: 1 minute
         nLastPOWBlock = 500;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
         nModifierUpdateBlock = 1;
         nMaxMoneyOut = 2000000 * COIN;
 
-        genesis = CreateGenesisBlock(1530489601, 2041133, 0x1e0ffff0, 1, 50 * COIN);
+        //genesis = CreateGenesisBlock(1530489601, 2041133, 0x1e0ffff0, 1, 50 * COIN);
 
-        hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("000007ea763e678e210d93fd00c90602a7cb090053ffabc2a798caa20ce84fd7"));
+        //hashGenesisBlock = genesis.GetHash();
+        //assert(hashGenesisBlock == uint256("000007ea763e678e210d93fd00c90602a7cb090053ffabc2a798caa20ce84fd7"));
 
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        // Testnet Gpkr addresses start with 'n'
+        // Testnet TNX addresses start with 'n'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 112);
-        // Testnet Gpkr script addresses start with '5'
+        // Testnet TNX script addresses start with '5'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);
         // Testnet private keys start with '5' or 'n' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 240);
-        // Testnet Gpkr BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet TNX BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
-        // Testnet Gpkr BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet TNX BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
-        // Testnet Gpkr BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet TNX BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -293,15 +312,15 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // Gpkr: 1 day
-        nTargetSpacing = 2 * 60;        // Gpkr: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // TNX: 1 day
+        nTargetSpacing = 2 * 60;        // TNX: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
 
-        genesis = CreateGenesisBlock(1530489602, 3, 0x207fffff, 1, 50 * COIN);
+        //genesis = CreateGenesisBlock(1530489602, 3, 0x207fffff, 1, 50 * COIN);
 
-        hashGenesisBlock = genesis.GetHash();
+       // hashGenesisBlock = genesis.GetHash();
         nDefaultPort = 238079;
-        assert(hashGenesisBlock == uint256("0x5f38eb5967ef70b09b8164c98bcde68cf01dcf46435b83f5f66dc0de18196163"));
+        //assert(hashGenesisBlock == uint256("0x5f38eb5967ef70b09b8164c98bcde68cf01dcf46435b83f5f66dc0de18196163"));
 
         vFixedSeeds.clear(); //! Regtest mode doesn't have any fixed seeds.
         vSeeds.clear();      //! Regtest mode doesn't have any DNS seeds.

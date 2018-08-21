@@ -242,10 +242,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop Gpkr server.");
+            "\nStop TNX server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "Gpkr server stopping";
+    return "TNX server stopping";
 }
 
 
@@ -327,33 +327,33 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* Gpkr features */
-        {"gpkr", "masternode", &masternode, true, true, false},
-        {"gpkr", "listmasternodes", &listmasternodes, true, true, false},
-        {"gpkr", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"gpkr", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"gpkr", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"gpkr", "masternodedebug", &masternodedebug, true, true, false},
-        {"gpkr", "startmasternode", &startmasternode, true, true, false},
-        {"gpkr", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"gpkr", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"gpkr", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"gpkr", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"gpkr", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"gpkr", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"gpkr", "mnbudget", &mnbudget, true, true, false},
-        {"gpkr", "preparebudget", &preparebudget, true, true, false},
-        {"gpkr", "submitbudget", &submitbudget, true, true, false},
-        {"gpkr", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"gpkr", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"gpkr", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"gpkr", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"gpkr", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"gpkr", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"gpkr", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"gpkr", "checkbudgets", &checkbudgets, true, true, false},
-        {"gpkr", "mnsync", &mnsync, true, true, false},
-        {"gpkr", "spork", &spork, true, true, false},
+        /* TNX features */
+        {"TNX", "masternode", &masternode, true, true, false},
+        {"TNX", "listmasternodes", &listmasternodes, true, true, false},
+        {"TNX", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"TNX", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"TNX", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"TNX", "masternodedebug", &masternodedebug, true, true, false},
+        {"TNX", "startmasternode", &startmasternode, true, true, false},
+        {"TNX", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"TNX", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"TNX", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"TNX", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"TNX", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"TNX", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"TNX", "mnbudget", &mnbudget, true, true, false},
+        {"TNX", "preparebudget", &preparebudget, true, true, false},
+        {"TNX", "submitbudget", &submitbudget, true, true, false},
+        {"TNX", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"TNX", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"TNX", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"TNX", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"TNX", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"TNX", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"TNX", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"TNX", "checkbudgets", &checkbudgets, true, true, false},
+        {"TNX", "mnsync", &mnsync, true, true, false},
+        {"TNX", "spork", &spork, true, true, false},
 #ifdef ENABLE_WALLET
 
         /* Wallet */
@@ -1070,14 +1070,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> gpkr-cli " + methodname + " " + args + "\n";
+    return "> TNX-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:18822/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:21209/\n";
 }
 
 const CRPCTable tableRPC;

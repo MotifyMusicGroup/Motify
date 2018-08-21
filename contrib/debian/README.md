@@ -1,21 +1,21 @@
 
 Debian
 ====================
-This directory contains files used to package gpkrd/gpkr-qt
-for Debian-based Linux systems. If you compile gpkrd/gpkr-qt yourself, there are some useful files here.
+This directory contains files used to package TNXd/TNX-qt
+for Debian-based Linux systems. If you compile TNXd/TNX-qt yourself, there are some useful files here.
 
-## gpkr: URI support ##
+## TNX: URI support ##
 
 
-gpkr-qt.desktop  (Gnome / Open Desktop)
+TNX-qt.desktop  (Gnome / Open Desktop)
 To install:
 
-	sudo desktop-file-install gpkr-qt.desktop
+	sudo desktop-file-install TNX-qt.desktop
 	sudo update-desktop-database
 
 If you build yourself, you will either need to modify the paths in
-the .desktop file or copy or symlink your gpkrqt binary to `/usr/bin`
-and the `../../share/pixmaps/gpkr128.png` to `/usr/share/pixmaps`
+the .desktop file or copy or symlink your TNXqt binary to `/usr/bin`
+and the `../../share/pixmaps/TNX128.png` to `/usr/share/pixmaps`
 
-gpkr-qt.protocol (KDE)
+TNX-qt.protocol (KDE)
 

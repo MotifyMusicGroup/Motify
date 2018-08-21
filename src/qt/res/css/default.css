@@ -23,7 +23,7 @@ border:0px solid #fff;
 }
 
 QWidget .QFrame#frame_Content { /* Actual Content */
-	background-image: url(':/images/gpkr_logo_horizontal');
+	background-image: url(':/images/TNX_logo_horizontal');
 	background-repeat:none;
 	background-position: left bottom;
 }

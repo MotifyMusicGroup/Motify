@@ -3,7 +3,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/gpkr-config.h"
+#include "config/TNX-config.h"
 #endif
 
 #include "optionsdialog.h"

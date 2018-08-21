@@ -31,9 +31,9 @@ SendCoinsEntry::SendCoinsEntry(QWidget* parent) : QStackedWidget(parent),
     ui->addAsLabel->setPlaceholderText(tr("Enter a label for this address to add it to your address book"));
 #endif
 
-    // normal gpkr address field
+    // normal TNX address field
     GUIUtil::setupAddressWidget(ui->payTo, this);
-    // just a label for displaying gpkr address(es)
+    // just a label for displaying TNX address(es)
     ui->payTo_is->setFont(GUIUtil::bitcoinAddressFont());
 
     // Connect signals
@@ -99,7 +99,7 @@ void SendCoinsEntry::clear()
     ui->memoTextLabel_s->clear();
     ui->payAmount_s->clear();
 
-    // update the display unit, to not use the default ("GPKR")
+    // update the display unit, to not use the default ("TNX")
     updateDisplayUnit();
 }
 

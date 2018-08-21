@@ -305,7 +305,7 @@ void AddressTableModel::updateEntry(const QString& address,
     const QString& purpose,
     int status)
 {
-    // Update address book model from Gold Poker Core
+    // Update address book model from Toran Core
     priv->updateEntry(address, label, isMine, purpose, status);
 }
 

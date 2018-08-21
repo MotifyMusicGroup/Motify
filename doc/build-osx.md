@@ -1,6 +1,6 @@
 Mac OS X Build Instructions and Notes
 ====================================
-This guide will show you how to build gpkrd (headless client) for OSX.
+This guide will show you how to build TNXd (headless client) for OSX.
 
 Notes
 -----
@@ -40,14 +40,14 @@ Instructions: Homebrew
 
         brew install autoconf automake berkeley-db4 libtool boost miniupnpc openssl pkg-config protobuf qt5 libzmq
 
-### Building `gpkrd`
+### Building `TNXd`
 
 1. Clone the github tree to get the source code and go into the directory.
 
-        git clone https://github.com/GoldPoker/gpkr.git
-        cd gpkr
+        git clone https://github.com/Toran/TNX.git
+        cd TNX
 
-2.  Build gpkrd:
+2.  Build TNXd:
 
         ./autogen.sh
         ./configure --with-gui=qt5
@@ -57,7 +57,7 @@ Instructions: Homebrew
 
         make check
 
-4.  (Optional) You can also install gpkrd to your path:
+4.  (Optional) You can also install TNXd to your path:
 
         make install
 
@@ -69,7 +69,7 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 1. Make sure you installed everything through homebrew mentioned above
 2. Do a proper ./configure --with-gui=qt5 --enable-debug
 3. In Qt Creator do "New Project" -> Import Project -> Import Existing Project
-4. Enter "gpkr-qt" as project name, enter src/qt as location
+4. Enter "TNX-qt" as project name, enter src/qt as location
 5. Leave the file selection as it is
 6. Confirm the "summary page"
 7. In the "Projects" tab select "Manage Kits..."
@@ -79,11 +79,11 @@ Download Qt Creator from http://www.qt.io/download/. Download the "community edi
 
 Creating a release build
 ------------------------
-You can ignore this section if you are building `gpkrd` for your own use.
+You can ignore this section if you are building `TNXd` for your own use.
 
-gpkrd/gpkr-cli binaries are not included in the Gpkr-Qt.app bundle.
+TNXd/TNX-cli binaries are not included in the TNX-Qt.app bundle.
 
-If you are building `gpkrd` or `gpkr-qt` for others, your build machine should be set up
+If you are building `TNXd` or `TNX-qt` for others, your build machine should be set up
 as follows for maximum compatibility:
 
 All dependencies should be compiled with these flags:
@@ -92,30 +92,30 @@ All dependencies should be compiled with these flags:
  -arch x86_64
  -isysroot $(xcode-select --print-path)/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk
 
-Once dependencies are compiled, see release-process.md for how the Gpkr-Qt.app
+Once dependencies are compiled, see release-process.md for how the TNX-Qt.app
 bundle is packaged and signed to create the .dmg disk image that is distributed.
 
 Running
 -------
 
-It's now available at `./gpkrd`, provided that you are still in the `src`
+It's now available at `./TNXd`, provided that you are still in the `src`
 directory. We have to first create the RPC configuration file, though.
 
-Run `./gpkrd` to get the filename where it should be put, or just try these
+Run `./TNXd` to get the filename where it should be put, or just try these
 commands:
 
-    echo -e "rpcuser=gpkrrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/Gpkr/gpkr.conf"
-    chmod 600 "/Users/${USER}/Library/Application Support/Gpkr/gpkr.conf"
+    echo -e "rpcuser=TNXrpc\nrpcpassword=$(xxd -l 16 -p /dev/urandom)" > "/Users/${USER}/Library/Application Support/TNX/TNX.conf"
+    chmod 600 "/Users/${USER}/Library/Application Support/TNX/TNX.conf"
 
 The next time you run it, it will start downloading the blockchain, but it won't
 output anything while it's doing this. This process may take several hours;
 you can monitor its process by looking at the debug.log file, like this:
 
-    tail -f $HOME/Library/Application\ Support/Gpkr/debug.log
+    tail -f $HOME/Library/Application\ Support/TNX/debug.log
 
 Other commands:
 -------
 
-    ./gpkrd -daemon # to start the gpkr daemon.
-    ./gpkr-cli --help  # for a list of command-line options.
-    ./gpkr-cli help    # When the daemon is running, to get a list of RPC commands
+    ./TNXd -daemon # to start the TNX daemon.
+    ./TNX-cli --help  # for a list of command-line options.
+    ./TNX-cli help    # When the daemon is running, to get a list of RPC commands

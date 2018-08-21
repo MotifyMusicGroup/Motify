@@ -2,7 +2,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The Gpkr developers
+// Copyright (c) 2018 The TNX developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,18 +21,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(GPKR);
-    unitlist.append(mGPKR);
-    unitlist.append(uGPKR);
+    unitlist.append(TNX);
+    unitlist.append(mTNX);
+    unitlist.append(uTNX);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case GPKR:
-    case mGPKR:
-    case uGPKR:
+    case TNX:
+    case mTNX:
+    case uTNX:
         return true;
     default:
         return false;
@@ -42,12 +42,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case GPKR:
-        return QString("gpkr");
-    case mGPKR:
-        return QString("mgpkr");
-    case uGPKR:
-        return QString::fromUtf8("ugpkr");
+    case TNX:
+        return QString("TNX");
+    case mTNX:
+        return QString("mTNX");
+    case uTNX:
+        return QString::fromUtf8("uTNX");
     default:
         return QString("???");
     }
@@ -57,23 +57,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case GPKR:
-            return QString("GPKR");
-        case mGPKR:
-            return QString("mGPKR");
-        case uGPKR:
-            return QString::fromUtf8("μGPKR");
+        case TNX:
+            return QString("TNX");
+        case mTNX:
+            return QString("mTNX");
+        case uTNX:
+            return QString::fromUtf8("μTNX");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case GPKR:
-            return QString("tGPKR");
-        case mGPKR:
-            return QString("mtGPKR");
-        case uGPKR:
-            return QString::fromUtf8("μtGPKR");
+        case TNX:
+            return QString("tTNX");
+        case mTNX:
+            return QString("mtTNX");
+        case uTNX:
+            return QString::fromUtf8("μtTNX");
         default:
             return QString("???");
         }
@@ -84,23 +84,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case GPKR:
-            return QString("GPKR");
-        case mGPKR:
-            return QString("Milli-GPKR (1 / 1" THIN_SP_UTF8 "000)");
-        case uGPKR:
-            return QString("Micro-GPKR (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case TNX:
+            return QString("TNX");
+        case mTNX:
+            return QString("Milli-TNX (1 / 1" THIN_SP_UTF8 "000)");
+        case uTNX:
+            return QString("Micro-TNX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case GPKR:
-            return QString("TestGPKRs");
-        case mGPKR:
-            return QString("Milli-TestGPKR (1 / 1" THIN_SP_UTF8 "000)");
-        case uGPKR:
-            return QString("Micro-TestGPKR (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case TNX:
+            return QString("TestTNXs");
+        case mTNX:
+            return QString("Milli-TestTNX (1 / 1" THIN_SP_UTF8 "000)");
+        case uTNX:
+            return QString("Micro-TestTNX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -110,11 +110,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case GPKR:
+    case TNX:
         return 100000000;
-    case mGPKR:
+    case mTNX:
         return 100000;
-    case uGPKR:
+    case uTNX:
         return 100;
     default:
         return 100000000;
@@ -124,11 +124,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case GPKR:
+    case TNX:
         return 8;
-    case mGPKR:
+    case mTNX:
         return 5;
-    case uGPKR:
+    case uTNX:
         return 2;
     default:
         return 0;

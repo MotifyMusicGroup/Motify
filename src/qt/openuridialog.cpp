@@ -17,7 +17,7 @@ OpenURIDialog::OpenURIDialog(QWidget* parent) : QDialog(parent),
 {
     ui->setupUi(this);
 #if QT_VERSION >= 0x040700
-    ui->uriEdit->setPlaceholderText("gpkr:");
+    ui->uriEdit->setPlaceholderText("TNX:");
 #endif
 }
 
@@ -48,5 +48,5 @@ void OpenURIDialog::on_selectFileButton_clicked()
     if (filename.isEmpty())
         return;
     QUrl fileUri = QUrl::fromLocalFile(filename);
-    ui->uriEdit->setText("gpkr:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
+    ui->uriEdit->setText("TNX:?r=" + QUrl::toPercentEncoding(fileUri.toString()));
 }

@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: gpkrd.service
-Upstart: gpkrd.conf
-OpenRC:  gpkrd.openrc
-         gpkrd.openrcconf
-CentOS:  gpkrd.init
+SystemD: TNXd.service
+Upstart: TNXd.conf
+OpenRC:  TNXd.openrc
+         TNXd.openrcconf
+CentOS:  TNXd.init
 
 have been made available to assist packagers in creating node packages here.
 

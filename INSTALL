@@ -1,4 +1,4 @@
-Building Gpkr
+Building TNX
 
 Use the autogen script to prepare the build environment.
 
@@ -8,6 +8,6 @@ Use the autogen script to prepare the build environment.
 
 Always verify the signatures and checksums.
 
-See doc/build-*.md for instructions on building gpkrd,
+See doc/build-*.md for instructions on building TNXd,
 the intended-for-services, no-graphical-interface, reference
-implementation of Gpkr.
+implementation of TNX.
