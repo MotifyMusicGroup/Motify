@@ -134,12 +134,12 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xa5;
-        pchMessageStart[1] = 0xb8;
-        pchMessageStart[2] = 0xd4;
-        pchMessageStart[3] = 0xa5;
+        pchMessageStart[0] = 0xa6;
+        pchMessageStart[1] = 0xb7;
+        pchMessageStart[2] = 0xd5;
+        pchMessageStart[3] = 0xa4;
         vAlertPubKey = ParseHex("04c084aea7611895c60739852406604a97c221775df42f93e553a0480073f288844cfd42d8b9a6915f56fb46bb233fead12fbdc1db4aca5d390f951b00ac2da315");
-        nDefaultPort = 21208;
+        nDefaultPort = 21205;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
         nSubsidyHalvingInterval = 210000000;
         nMaxReorganizationDepth = 100;
@@ -176,9 +176,9 @@ public:
         assert(genesis.hashMerkleRoot == uint256("0xcaf4c7cebef2097be94e18173b70efb29b1204162bc306da6293986056789435"));
 
         // DNS Seeding
-        vSeeds.push_back(CDNSSeedData("142.93.88.191", "142.93.27.82"));
-	vSeeds.push_back(CDNSSeedData("142.93.19.160", "142.93.88.29"));
-	vSeeds.push_back(CDNSSeedData("159.65.97.121", "142.93.117.170"));
+        vSeeds.push_back(CDNSSeedData("142.93.246.62", "142.93.250.187"));
+	vSeeds.push_back(CDNSSeedData("142.93.246.52", "142.93.193.230"));
+	vSeeds.push_back(CDNSSeedData("206.189.192.154", ""));
 
         // TNX addresses start with 'T'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 66);
@@ -190,7 +190,7 @@ public:
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
         // TNX BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        // TNX BIP44 coin type is '21208'
+        // TNX BIP44 coin type is '21205'
         //  BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x49)(0x85).convert_to_container<std::vector<unsigned char> >();
 

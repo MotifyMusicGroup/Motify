@@ -203,10 +203,10 @@ QT_TRANSLATE_NOOP("TNX-core", ""
 QT_TRANSLATE_NOOP("TNX-core", ""
 "You must specify a masternodeprivkey in the configuration. Please see "
 "documentation for help."),
-QT_TRANSLATE_NOOP("TNX-core", "(21208 could be used only on mainnet)"),
+QT_TRANSLATE_NOOP("TNX-core", "(21205 could be used only on mainnet)"),
 QT_TRANSLATE_NOOP("TNX-core", "(default: %s)"),
 QT_TRANSLATE_NOOP("TNX-core", "(default: 1)"),
-QT_TRANSLATE_NOOP("TNX-core", "(must be 21208 for mainnet)"),
+QT_TRANSLATE_NOOP("TNX-core", "(must be 21205 for mainnet)"),
 QT_TRANSLATE_NOOP("TNX-core", "<category> can be:"),
 QT_TRANSLATE_NOOP("TNX-core", "Accept command line and JSON-RPC commands"),
 QT_TRANSLATE_NOOP("TNX-core", "Accept connections from outside (default: 1 if no -proxy or -connect)"),
