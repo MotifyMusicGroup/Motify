@@ -56,11 +56,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x000001c2e559d9dca42faa174dc54647ce6f8c25947c71127f94246a6b04d2c5"));
+    (0, uint256("0x0000095727d78dff4373d0517152c555ba0ded4fc94dcaaa26460b28076085eb"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1534817842, // * UNIX timestamp of last checkpoint block
+    1534902746, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1000        // * estimated number of transactions per day after checkpoint
@@ -72,7 +72,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1534817842,
+    1534902746,
     0,
     100};
 
@@ -81,7 +81,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     (0, uint256("0x00"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1534817842,
+    1534902746,
     0,
     100};
 
@@ -134,10 +134,10 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xa4;
-        pchMessageStart[1] = 0xb7;
-        pchMessageStart[2] = 0xd3;
-        pchMessageStart[3] = 0xa6;
+        pchMessageStart[0] = 0xa5;
+        pchMessageStart[1] = 0xb8;
+        pchMessageStart[2] = 0xd4;
+        pchMessageStart[3] = 0xa5;
         vAlertPubKey = ParseHex("04c084aea7611895c60739852406604a97c221775df42f93e553a0480073f288844cfd42d8b9a6915f56fb46bb233fead12fbdc1db4aca5d390f951b00ac2da315");
         nDefaultPort = 21208;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
@@ -152,10 +152,10 @@ public:
         nMaturity = 10;
         nMasternodeCountDrift = 1;
         nMaxMoneyOut = 21722591 * COIN;
-        nLastPOWBlock = 1499;
+        nLastPOWBlock = 400;
         nModifierUpdateBlock = 1; // we use the version 2 for TNX
 
-	const char* pszTimestamp = "Toran Coin Genesis Block";
+	const char* pszTimestamp = "Toran Coin Genesis";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
@@ -166,14 +166,14 @@ public:
 	genesis.hashPrevBlock = 0;
 	genesis.hashMerkleRoot = genesis.BuildMerkleTree();
 	genesis.nVersion = 1;
-	genesis.nTime    = 1534817842;
+	genesis.nTime    = 1534902746;
    	genesis.nBits    = 0x1e0ffff0;
-    	genesis.nNonce   = 4085829; 	
+    	genesis.nNonce   = 5034488; 	
 
         //MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x000001c2e559d9dca42faa174dc54647ce6f8c25947c71127f94246a6b04d2c5"));
-        assert(genesis.hashMerkleRoot == uint256("0x0b8e0ae295a9f1379d0f03bef3461ac630d8fa64ffa5a1c43cec3e924c2949f3"));
+        assert(hashGenesisBlock == uint256("0x0000095727d78dff4373d0517152c555ba0ded4fc94dcaaa26460b28076085eb"));
+        assert(genesis.hashMerkleRoot == uint256("0xcaf4c7cebef2097be94e18173b70efb29b1204162bc306da6293986056789435"));
 
         // DNS Seeding
         vSeeds.push_back(CDNSSeedData("142.93.88.191", "142.93.27.82"));
