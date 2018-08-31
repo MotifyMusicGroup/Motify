@@ -86,42 +86,6 @@ static const Checkpoints::CCheckpointData dataRegtest = {
     100};
 
 
-/*void MineGenesis(CBlock genesis)
-{
-    printf("Searching for genesis block...\n");
-    // This will figure out a valid hash and Nonce if you're
-    // creating a different genesis block:
-    uint256 hashTarget = ~uint256(0) >> 20;
-    uint256 thash;
-    while(true)
-    {
-        thash = genesis.GetHash();
-        if (thash <= hashTarget)
-            break;
-        if ((genesis.nNonce & 0xFFF) == 0)
-        {
-            printf("nonce %08X: hash = %s (target = %s)\n", genesis.nNonce, thash.ToString().c_str(), hashTarget.ToString().c_str());
-        }
-        ++genesis.nNonce;
-        if (genesis.nNonce == 0)
-        {
-            printf("NONCE WRAPPED, incrementing time\n");
-            ++genesis.nTime;
-        }
-    }
-    printf("block.nTime = %u \n", genesis.nTime);
-    printf("block.nNonce = %u \n", genesis.nNonce);
-    printf("block.GetHash = %s\n", genesis.GetHash().ToString().c_str());
-    printf("block.merkle = %s\n", genesis.hashMerkleRoot.ToString().c_str());
-    std::cout << genesis.ToString() << std::endl;
-}*/
-
-
-
-
-
-
-
 class CMainParams : public CChainParams
 {
 public:
@@ -170,7 +134,7 @@ public:
    	genesis.nBits    = 0x1e0ffff0;
     	genesis.nNonce   = 5896522; 	
 
-        //MineGenesis(genesis);
+       
         hashGenesisBlock = genesis.GetHash();
         assert(hashGenesisBlock == uint256("0x00000b3a80402ff54b4dafe357a7dd69ec924c7205cb8418c9a3326982ac3c33"));
         assert(genesis.hashMerkleRoot == uint256("0x5a71178adbef3410a92fa5369aeee7480d7f1bf3e7c05a7767a40ce989cce72d"));
@@ -178,7 +142,8 @@ public:
         // DNS Seeding
         vSeeds.push_back(CDNSSeedData("104.248.72.162", "138.68.141.2"));
 	vSeeds.push_back(CDNSSeedData("104.248.68.63", "104.248.72.195"));
-	vSeeds.push_back(CDNSSeedData("", ""));
+	vSeeds.push_back(CDNSSeedData("45.32.74.181", "149.28.65.204"));
+	vSeeds.push_back(CDNSSeedData("149.28.71.108", "45.32.64.5"));
 
         // MDFY addresses start with 'M'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
