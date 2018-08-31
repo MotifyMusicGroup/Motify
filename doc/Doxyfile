@@ -28,7 +28,7 @@ DOXYFILE_ENCODING      = UTF-8
 # The PROJECT_NAME tag is a single word (or a sequence of words surrounded
 # by quotes) that should identify the project.
 
-PROJECT_NAME           = TNX
+PROJECT_NAME           = MDFY
 
 # The PROJECT_NUMBER tag can be used to enter a project or revision number.
 # This could be handy for archiving the generated documentation or
@@ -914,7 +914,7 @@ HTML_COLORSTYLE_HUE    = 220
 
 # The HTML_COLORSTYLE_SAT tag controls the purity (or saturation) of
 # the colors in the HTML output. For a value of 0 the output will use
-# grayscales only. A value of 255 will produce the most TNX colors.
+# grayscales only. A value of 255 will produce the most MDFY colors.
 
 HTML_COLORSTYLE_SAT    = 100
 

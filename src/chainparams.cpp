@@ -3,7 +3,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The TNX developers
+// Copyright (c) 2018 The MDFY developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -56,11 +56,11 @@ static void convertSeed6(std::vector<CAddress>& vSeedsOut, const SeedSpec6* data
 
 static Checkpoints::MapCheckpoints mapCheckpoints =
     boost::assign::map_list_of
-    (0, uint256("0x0000095727d78dff4373d0517152c555ba0ded4fc94dcaaa26460b28076085eb"));
+    (0, uint256("0x00000b3a80402ff54b4dafe357a7dd69ec924c7205cb8418c9a3326982ac3c33"));
 
 static const Checkpoints::CCheckpointData data = {
     &mapCheckpoints,
-    1534902746, // * UNIX timestamp of last checkpoint block
+    1535647319, // * UNIX timestamp of last checkpoint block
     0,          // * total number of transactions between genesis and last checkpoint
                 //   (the tx=... number in the SetBestChain debug.log lines)
     1000        // * estimated number of transactions per day after checkpoint
@@ -72,7 +72,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsTestnet =
 
 static const Checkpoints::CCheckpointData dataTestnet = {
     &mapCheckpointsTestnet,
-    1534902746,
+    1535647319,
     0,
     100};
 
@@ -81,7 +81,7 @@ static Checkpoints::MapCheckpoints mapCheckpointsRegtest =
     (0, uint256("0x00"));
 static const Checkpoints::CCheckpointData dataRegtest = {
     &mapCheckpointsRegtest,
-    1534902746,
+    1535647319,
     0,
     100};
 
@@ -134,63 +134,63 @@ public:
          * The characters are rarely used upper ASCII, not valid as UTF-8, and produce
          * a large 4-byte int at any alignment.
          */
-        pchMessageStart[0] = 0xa6;
-        pchMessageStart[1] = 0xb7;
-        pchMessageStart[2] = 0xd5;
-        pchMessageStart[3] = 0xa4;
-        vAlertPubKey = ParseHex("04c084aea7611895c60739852406604a97c221775df42f93e553a0480073f288844cfd42d8b9a6915f56fb46bb233fead12fbdc1db4aca5d390f951b00ac2da315");
-        nDefaultPort = 21205;
+        pchMessageStart[0] = 0xb5;
+        pchMessageStart[1] = 0xa3;
+        pchMessageStart[2] = 0xd7;
+        pchMessageStart[3] = 0xc2;
+        vAlertPubKey = ParseHex("043e7ca6578820197b9a10392a0059511cf9c66cea58b5062d91dfe6c05bf027b8980d236393af4c689c987ef58da080ab2a29daef733d8827d0702bdbef28478f");
+        nDefaultPort = 44741;
         bnProofOfWorkLimit = ~uint256(0) >> 1;
-        nSubsidyHalvingInterval = 210000000;
+        nSubsidyHalvingInterval = 420000000;
         nMaxReorganizationDepth = 100;
         nEnforceBlockUpgradeMajority = 750;
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // TNX: 2 blocks
-        nTargetSpacing = 1 * 60;  // TNX: 60 sec
+        nTargetTimespan = 2 * 75; // 
+        nTargetSpacing = 2 * 75;  // 
         nMaturity = 10;
         nMasternodeCountDrift = 1;
-        nMaxMoneyOut = 21722591 * COIN;
-        nLastPOWBlock = 400;
-        nModifierUpdateBlock = 1; // we use the version 2 for TNX
+        nMaxMoneyOut = 42000000 * COIN;
+        nLastPOWBlock = 500;
+        nModifierUpdateBlock = 1; // 
 
-	const char* pszTimestamp = "Toran Coin Genesis";
+	const char* pszTimestamp = "Begin Motify Genesis Block 1535647319";
         CMutableTransaction txNew;
         txNew.vin.resize(1);
         txNew.vout.resize(1);
         txNew.vin[0].scriptSig = CScript() << 486604799 << CScriptNum(4) << vector<unsigned char>((const unsigned char*)pszTimestamp, (const unsigned char*)pszTimestamp + strlen(pszTimestamp));
         txNew.vout[0].nValue = 50 * COIN;
-        txNew.vout[0].scriptPubKey = CScript() << ParseHex("0417c3af2aa70c85c722100d28c49fde73d000793c633ff5d07a15c2c0cf642fa557cf7d45fcd53eb2c3174e045416103202bc41f5da1d886856ced2c5387901d7") << 	OP_CHECKSIG;
+        txNew.vout[0].scriptPubKey = CScript() << ParseHex("045d9ddcd8141980c7af07b55e0ff6c9b5d3d314103bf75ec1fd8aaac4d3301bc661a77ce2d74dd66c546cde5bb52b98fb7270770854b88f6f935373da908877be") << 	OP_CHECKSIG;
 	genesis.vtx.push_back(txNew);
 	genesis.hashPrevBlock = 0;
 	genesis.hashMerkleRoot = genesis.BuildMerkleTree();
 	genesis.nVersion = 1;
-	genesis.nTime    = 1534902746;
+	genesis.nTime    = 1535647319;
    	genesis.nBits    = 0x1e0ffff0;
-    	genesis.nNonce   = 5034488; 	
+    	genesis.nNonce   = 5896522; 	
 
         //MineGenesis(genesis);
         hashGenesisBlock = genesis.GetHash();
-        assert(hashGenesisBlock == uint256("0x0000095727d78dff4373d0517152c555ba0ded4fc94dcaaa26460b28076085eb"));
-        assert(genesis.hashMerkleRoot == uint256("0xcaf4c7cebef2097be94e18173b70efb29b1204162bc306da6293986056789435"));
+        assert(hashGenesisBlock == uint256("0x00000b3a80402ff54b4dafe357a7dd69ec924c7205cb8418c9a3326982ac3c33"));
+        assert(genesis.hashMerkleRoot == uint256("0x5a71178adbef3410a92fa5369aeee7480d7f1bf3e7c05a7767a40ce989cce72d"));
 
         // DNS Seeding
-        vSeeds.push_back(CDNSSeedData("142.93.246.62", "142.93.250.187"));
-	vSeeds.push_back(CDNSSeedData("142.93.246.52", "142.93.193.230"));
-	vSeeds.push_back(CDNSSeedData("206.189.192.154", ""));
+        vSeeds.push_back(CDNSSeedData("104.248.72.162", "138.68.141.2"));
+	vSeeds.push_back(CDNSSeedData("104.248.68.63", "104.248.72.195"));
+	vSeeds.push_back(CDNSSeedData("", ""));
 
-        // TNX addresses start with 'T'
-        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 66);
-        // TNX script addresses start with 'T'
-        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 66);
-        // TNX private keys start with '9' or 'A'
+        // MDFY addresses start with 'M'
+        base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 50);
+        // MDFY script addresses start with 'M'
+        base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 50);
+        // MDFY private keys start with '9' or 'A'
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 22);
-        // TNX BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
+        // MDFY BIP32 pubkeys start with 'xpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x88)(0xB2)(0x1E).convert_to_container<std::vector<unsigned char> >();
-        // TNX BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
+        // MDFY BIP32 prvkeys start with 'xprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x88)(0xAD)(0xE4).convert_to_container<std::vector<unsigned char> >();
-        // TNX BIP44 coin type is '21205'
+        // MDFY BIP44 coin type is '44741'
         //  BIP44 coin type is from https://github.com/satoshilabs/slips/blob/master/slip-0044.md
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x49)(0x85).convert_to_container<std::vector<unsigned char> >();
 
@@ -206,8 +206,8 @@ public:
         fHeadersFirstSyncingActive = false;
 
         nPoolMaxTransactions = 3;
-        strSporkKey = "0440f06498df74d80d33d258ec84a294bed7078557598c1c5d796909dc3d2dc4c2a6c3f066401b4e3a71cf583134d5c397efd07f2ff0dc2d14847befa89441c271";
-        strMasternodePoolDummyAddress = "GQQ6cNVNg1R1A2e1AgtY1FPsh3d1wGekr7";
+        strSporkKey = "024a933d01e24928e15043c1c083b6454020fc864d56c2f977be9b38da2e6f4ceb";
+        strMasternodePoolDummyAddress = "MKCiDWHJA2LgoNnxhFr8XMnrHBakFyLQuW";
         nStartMasternodePayments = genesis.nTime; 
 
         nBudget_Fee_Confirmations = 6; // Number of confirmations for the finalization fee
@@ -240,8 +240,8 @@ public:
         nRejectBlockOutdatedMajority = 75;
         nToCheckBlockUpgradeMajority = 100;
         nMinerThreads = 0;
-        nTargetTimespan = 1 * 60; // TNX: 1 day
-        nTargetSpacing = 2 * 60;  // TNX: 1 minute
+        nTargetTimespan = 1 * 60; // MDFY: 1 day
+        nTargetSpacing = 2 * 60;  // MDFY: 1 minute
         nLastPOWBlock = 500;
         nMaturity = 15;
         nMasternodeCountDrift = 4;
@@ -256,17 +256,17 @@ public:
         vFixedSeeds.clear();
         vSeeds.clear();
 
-        // Testnet TNX addresses start with 'n'
+        // Testnet MDFY addresses start with 'n'
         base58Prefixes[PUBKEY_ADDRESS] = std::vector<unsigned char>(1, 112);
-        // Testnet TNX script addresses start with '5'
+        // Testnet MDFY script addresses start with '5'
         base58Prefixes[SCRIPT_ADDRESS] = std::vector<unsigned char>(1, 10);
         // Testnet private keys start with '5' or 'n' (Bitcoin defaults)
         base58Prefixes[SECRET_KEY] = std::vector<unsigned char>(1, 240);
-        // Testnet TNX BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
+        // Testnet MDFY BIP32 pubkeys start with 'tpub' (Bitcoin defaults)
         base58Prefixes[EXT_PUBLIC_KEY] = boost::assign::list_of(0x04)(0x35)(0x87)(0xCF).convert_to_container<std::vector<unsigned char> >();
-        // Testnet TNX BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
+        // Testnet MDFY BIP32 prvkeys start with 'tprv' (Bitcoin defaults)
         base58Prefixes[EXT_SECRET_KEY] = boost::assign::list_of(0x04)(0x35)(0x83)(0x94).convert_to_container<std::vector<unsigned char> >();
-        // Testnet TNX BIP44 coin type is '1' (All coin's testnet default)
+        // Testnet MDFY BIP44 coin type is '1' (All coin's testnet default)
         base58Prefixes[EXT_COIN_TYPE] = boost::assign::list_of(0x80)(0x00)(0x00)(0x01).convert_to_container<std::vector<unsigned char> >();
 
         convertSeed6(vFixedSeeds, pnSeed6_test, ARRAYLEN(pnSeed6_test));
@@ -312,8 +312,8 @@ public:
         nRejectBlockOutdatedMajority = 950;
         nToCheckBlockUpgradeMajority = 1000;
         nMinerThreads = 1;
-        nTargetTimespan = 24 * 60 * 60; // TNX: 1 day
-        nTargetSpacing = 2 * 60;        // TNX: 1 minutes
+        nTargetTimespan = 24 * 60 * 60; // MDFY: 1 day
+        nTargetSpacing = 2 * 60;        // MDFY: 1 minutes
         bnProofOfWorkLimit = ~uint256(0) >> 1;
 
         //genesis = CreateGenesisBlock(1530489602, 3, 0x207fffff, 1, 50 * COIN);

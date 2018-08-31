@@ -1,0 +1,11 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=MDFY
+Comment=MDFY P2P Cryptocurrency
+Exec=MDFY-qt %u
+Terminal=false
+Type=Application
+Icon=MDFY128
+MimeType=x-scheme-handler/MDFY;
+Categories=Office;Finance;
+Name[en_US]=MDFY-qt.desktop

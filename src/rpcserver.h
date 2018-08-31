@@ -96,7 +96,7 @@ public:
 };
 
 /**
- * TNX RPC command dispatcher.
+ * MDFY RPC command dispatcher.
  */
 class CRPCTable
 {

@@ -1,36 +1,36 @@
-Toran Core
+Motify Core
 =====================
 
 Setup
 ---------------------
-[Toran Core](https://Toran.com) is the original TNX client and it builds the backbone of the network. However, it downloads and stores the entire history of TNX transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
+[Motify Core](https://Motify.com) is the original MDFY client and it builds the backbone of the network. However, it downloads and stores the entire history of MDFY transactions; depending on the speed of your computer and network connection, the synchronization process can take anywhere from a few hours to a day or more. Thankfully you only have to do this once.
 
 Running
 ---------------------
-The following are some helpful notes on how to run TNX on your native platform.
+The following are some helpful notes on how to run MDFY on your native platform.
 
 ### Unix
 
 Unpack the files into a directory and run:
 
-- bin/32/TNX-qt (GUI, 32-bit) or bin/32/TNXd (headless, 32-bit)
-- bin/64/TNX-qt (GUI, 64-bit) or bin/64/TNXd (headless, 64-bit)
+- bin/32/MDFY-qt (GUI, 32-bit) or bin/32/MDFYd (headless, 32-bit)
+- bin/64/MDFY-qt (GUI, 64-bit) or bin/64/MDFYd (headless, 64-bit)
 
 ### Windows
 
-Unpack the files into a directory, and then run TNX-qt.exe.
+Unpack the files into a directory, and then run MDFY-qt.exe.
 
 ### OSX
 
-Drag TNX-Qt to your applications folder, and then run TNX-Qt.
+Drag MDFY-Qt to your applications folder, and then run MDFY-Qt.
 
 ### Need Help?
 
-* Join our Discord server [Discord Server](https://discord.Toran.com)
+* Join our Discord server [Discord Server](https://discord.Motify.com)
 
 Building
 ---------------------
-The following are developer notes on how to build TNX on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
+The following are developer notes on how to build MDFY on your native platform. They are not complete guides, but include notes on the necessary libraries, compile flags, etc.
 
 - [OSX Build Notes](build-osx.md)
 - [Unix Build Notes](build-unix.md)
@@ -39,7 +39,7 @@ The following are developer notes on how to build TNX on your native platform. T
 
 Development
 ---------------------
-The TNX repo's [root README](https://github.com/Toran/TNX/blob/master/README.md) contains relevant information on the development process and automated testing.
+The MDFY repo's [root README](https://github.com/Motify/MDFY/blob/master/README.md) contains relevant information on the development process and automated testing.
 
 - [Developer Notes](developer-notes.md)
 - [Multiwallet Qt Development](multiwallet-qt.md)

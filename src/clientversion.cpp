@@ -10,10 +10,10 @@
 
 /**
  * Name of client reported in the 'version' message. Report the same name
- * for both TNXd and TNX-qt, to make it harder for attackers to
+ * for both MDFYd and MDFY-qt, to make it harder for attackers to
  * target servers or GUI users specifically.
  */
-const std::string CLIENT_NAME("Toran Core");
+const std::string CLIENT_NAME("Motify Core");
 
 /**
  * Client version number

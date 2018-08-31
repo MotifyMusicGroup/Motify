@@ -1,0 +1,26 @@
+# /etc/conf.d/MDFYd: config file for /etc/init.d/MDFYd
+
+# Config file location
+#BITCOIND_CONFIGFILE="/etc/MDFY/MDFY.conf"
+
+# What directory to write pidfile to?  (created and owned by $BITCOIND_USER)
+#BITCOIND_PIDDIR="/var/run/MDFYd"
+
+# What filename to give the pidfile
+#BITCOIND_PIDFILE="${BITCOIND_PIDDIR}/MDFYd.pid"
+
+# Where to write MDFYd data (be mindful that the blockchain is large)
+#BITCOIND_DATADIR="/var/lib/MDFYd"
+
+# User and group to own MDFYd process
+#BITCOIND_USER="MDFY"
+#BITCOIND_GROUP="MDFY"
+
+# Path to MDFYd executable
+#BITCOIND_BIN="/usr/bin/MDFYd"
+
+# Nice value to run MDFYd under
+#BITCOIND_NICE=0
+
+# Additional options (avoid -conf and -datadir, use flags above)
+BITCOIND_OPTS=""

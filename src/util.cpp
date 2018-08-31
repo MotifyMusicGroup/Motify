@@ -6,7 +6,7 @@
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
 #if defined(HAVE_CONFIG_H)
-#include "config/TNX-config.h"
+#include "config/MDFY-config.h"
 #endif
 
 #include "util.h"
@@ -105,7 +105,7 @@ std::string to_internal(const std::string&);
 
 using namespace std;
 
-// TNX only features
+// MDFY only features
 // Masternode
 bool fMasterNode = false;
 string strMasterNodePrivKey = "";
@@ -227,8 +227,8 @@ bool LogAcceptCategory(const char* category)
             const vector<string>& categories = mapMultiArgs["-debug"];
             ptrCategory.reset(new set<string>(categories.begin(), categories.end()));
             // thread_specific_ptr automatically deletes the set when the thread ends.
-            // "TNX" is a composite category enabling all TNX-related debug output
-            if (ptrCategory->count(string("TNX"))) {
+            // "MDFY" is a composite category enabling all MDFY-related debug output
+            if (ptrCategory->count(string("MDFY"))) {
                 ptrCategory->insert(string("swifttx"));
                 ptrCategory->insert(string("masternode"));
                 ptrCategory->insert(string("mnpayments"));
@@ -391,7 +391,7 @@ static std::string FormatException(std::exception* pex, const char* pszThread)
     char pszModule[MAX_PATH] = "";
     GetModuleFileNameA(NULL, pszModule, sizeof(pszModule));
 #else
-    const char* pszModule = "TNX";
+    const char* pszModule = "MDFY";
 #endif
     if (pex)
         return strprintf(
@@ -412,13 +412,13 @@ void PrintExceptionContinue(std::exception* pex, const char* pszThread)
 boost::filesystem::path GetDefaultDataDir()
 {
     namespace fs = boost::filesystem;
-// Windows < Vista: C:\Documents and Settings\Username\Application Data\TNX
-// Windows >= Vista: C:\Users\Username\AppData\Roaming\TNX
-// Mac: ~/Library/Application Support/TNX
-// Unix: ~/.TNX
+// Windows < Vista: C:\Documents and Settings\Username\Application Data\MDFY
+// Windows >= Vista: C:\Users\Username\AppData\Roaming\MDFY
+// Mac: ~/Library/Application Support/MDFY
+// Unix: ~/.MDFY
 #ifdef WIN32
     // Windows
-    return GetSpecialFolderPath(CSIDL_APPDATA) / "TNX";
+    return GetSpecialFolderPath(CSIDL_APPDATA) / "MDFY";
 #else
     fs::path pathRet;
     char* pszHome = getenv("HOME");
@@ -430,10 +430,10 @@ boost::filesystem::path GetDefaultDataDir()
     // Mac
     pathRet /= "Library/Application Support";
     TryCreateDirectory(pathRet);
-    return pathRet / "TNX";
+    return pathRet / "MDFY";
 #else
     // Unix
-    return pathRet / ".TNX";
+    return pathRet / ".MDFY";
 #endif
 #endif
 }
@@ -480,7 +480,7 @@ void ClearDatadirCache()
 
 boost::filesystem::path GetConfigFile()
 {
-    boost::filesystem::path pathConfigFile(GetArg("-conf", "TNX.conf"));
+    boost::filesystem::path pathConfigFile(GetArg("-conf", "MDFY.conf"));
     if (!pathConfigFile.is_complete())
         pathConfigFile = GetDataDir(false) / pathConfigFile;
 
@@ -499,7 +499,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 {
     boost::filesystem::ifstream streamConfig(GetConfigFile());
     if (!streamConfig.good()) {
-        // Create empty TNX.conf if it does not exist
+        // Create empty MDFY.conf if it does not exist
         FILE* configFile = fopen(GetConfigFile().string().c_str(), "a");
         if (configFile != NULL)
             fclose(configFile);
@@ -510,7 +510,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
     setOptions.insert("*");
 
     for (boost::program_options::detail::config_file_iterator it(streamConfig, setOptions), end; it != end; ++it) {
-        // Don't overwrite existing settings so command line settings override TNX.conf
+        // Don't overwrite existing settings so command line settings override MDFY.conf
         string strKey = string("-") + it->string_key;
         string strValue = it->value[0];
         InterpretNegativeSetting(strKey, strValue);
@@ -525,7 +525,7 @@ void ReadConfigFile(map<string, string>& mapSettingsRet,
 #ifndef WIN32
 boost::filesystem::path GetPidFile()
 {
-    boost::filesystem::path pathPidFile(GetArg("-pid", "TNXd.pid"));
+    boost::filesystem::path pathPidFile(GetArg("-pid", "MDFYd.pid"));
     if (!pathPidFile.is_complete()) pathPidFile = GetDataDir() / pathPidFile;
     return pathPidFile;
 }

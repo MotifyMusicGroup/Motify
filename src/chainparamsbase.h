@@ -9,8 +9,8 @@
 #include <vector>
 
 /**
- * CBaseChainParams defines the base parameters (shared between TNX-cli and TNXd)
- * of a given instance of the TNX system.
+ * CBaseChainParams defines the base parameters (shared between MDFY-cli and MDFYd)
+ * of a given instance of the MDFY system.
  */
 class CBaseChainParams
 {

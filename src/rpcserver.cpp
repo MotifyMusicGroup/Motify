@@ -242,10 +242,10 @@ UniValue stop(const UniValue& params, bool fHelp)
     if (fHelp || params.size() > 1)
         throw runtime_error(
             "stop\n"
-            "\nStop TNX server.");
+            "\nStop MDFY server.");
     // Shutdown will take long enough that the response should get back
     StartShutdown();
-    return "TNX server stopping";
+    return "MDFY server stopping";
 }
 
 
@@ -327,33 +327,33 @@ static const CRPCCommand vRPCCommands[] =
         {"hidden", "reconsiderblock", &reconsiderblock, true, true, false},
         {"hidden", "setmocktime", &setmocktime, true, false, false},
 
-        /* TNX features */
-        {"TNX", "masternode", &masternode, true, true, false},
-        {"TNX", "listmasternodes", &listmasternodes, true, true, false},
-        {"TNX", "getmasternodecount", &getmasternodecount, true, true, false},
-        {"TNX", "masternodeconnect", &masternodeconnect, true, true, false},
-        {"TNX", "masternodecurrent", &masternodecurrent, true, true, false},
-        {"TNX", "masternodedebug", &masternodedebug, true, true, false},
-        {"TNX", "startmasternode", &startmasternode, true, true, false},
-        {"TNX", "createmasternodekey", &createmasternodekey, true, true, false},
-        {"TNX", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
-        {"TNX", "listmasternodeconf", &listmasternodeconf, true, true, false},
-        {"TNX", "getmasternodestatus", &getmasternodestatus, true, true, false},
-        {"TNX", "getmasternodewinners", &getmasternodewinners, true, true, false},
-        {"TNX", "getmasternodescores", &getmasternodescores, true, true, false},
-        {"TNX", "mnbudget", &mnbudget, true, true, false},
-        {"TNX", "preparebudget", &preparebudget, true, true, false},
-        {"TNX", "submitbudget", &submitbudget, true, true, false},
-        {"TNX", "mnbudgetvote", &mnbudgetvote, true, true, false},
-        {"TNX", "getbudgetvotes", &getbudgetvotes, true, true, false},
-        {"TNX", "getnextsuperblock", &getnextsuperblock, true, true, false},
-        {"TNX", "getbudgetprojection", &getbudgetprojection, true, true, false},
-        {"TNX", "getbudgetinfo", &getbudgetinfo, true, true, false},
-        {"TNX", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
-        {"TNX", "mnfinalbudget", &mnfinalbudget, true, true, false},
-        {"TNX", "checkbudgets", &checkbudgets, true, true, false},
-        {"TNX", "mnsync", &mnsync, true, true, false},
-        {"TNX", "spork", &spork, true, true, false},
+        /* MDFY features */
+        {"MDFY", "masternode", &masternode, true, true, false},
+        {"MDFY", "listmasternodes", &listmasternodes, true, true, false},
+        {"MDFY", "getmasternodecount", &getmasternodecount, true, true, false},
+        {"MDFY", "masternodeconnect", &masternodeconnect, true, true, false},
+        {"MDFY", "masternodecurrent", &masternodecurrent, true, true, false},
+        {"MDFY", "masternodedebug", &masternodedebug, true, true, false},
+        {"MDFY", "startmasternode", &startmasternode, true, true, false},
+        {"MDFY", "createmasternodekey", &createmasternodekey, true, true, false},
+        {"MDFY", "getmasternodeoutputs", &getmasternodeoutputs, true, true, false},
+        {"MDFY", "listmasternodeconf", &listmasternodeconf, true, true, false},
+        {"MDFY", "getmasternodestatus", &getmasternodestatus, true, true, false},
+        {"MDFY", "getmasternodewinners", &getmasternodewinners, true, true, false},
+        {"MDFY", "getmasternodescores", &getmasternodescores, true, true, false},
+        {"MDFY", "mnbudget", &mnbudget, true, true, false},
+        {"MDFY", "preparebudget", &preparebudget, true, true, false},
+        {"MDFY", "submitbudget", &submitbudget, true, true, false},
+        {"MDFY", "mnbudgetvote", &mnbudgetvote, true, true, false},
+        {"MDFY", "getbudgetvotes", &getbudgetvotes, true, true, false},
+        {"MDFY", "getnextsuperblock", &getnextsuperblock, true, true, false},
+        {"MDFY", "getbudgetprojection", &getbudgetprojection, true, true, false},
+        {"MDFY", "getbudgetinfo", &getbudgetinfo, true, true, false},
+        {"MDFY", "mnbudgetrawvote", &mnbudgetrawvote, true, true, false},
+        {"MDFY", "mnfinalbudget", &mnfinalbudget, true, true, false},
+        {"MDFY", "checkbudgets", &checkbudgets, true, true, false},
+        {"MDFY", "mnsync", &mnsync, true, true, false},
+        {"MDFY", "spork", &spork, true, true, false},
 #ifdef ENABLE_WALLET
 
         /* Wallet */
@@ -1070,14 +1070,14 @@ std::vector<std::string> CRPCTable::listCommands() const
 
 std::string HelpExampleCli(string methodname, string args)
 {
-    return "> TNX-cli " + methodname + " " + args + "\n";
+    return "> MDFY-cli " + methodname + " " + args + "\n";
 }
 
 std::string HelpExampleRpc(string methodname, string args)
 {
     return "> curl --user myusername --data-binary '{\"jsonrpc\": \"1.0\", \"id\":\"curltest\", "
            "\"method\": \"" +
-           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:21206/\n";
+           methodname + "\", \"params\": [" + args + "] }' -H 'content-type: text/plain;' http://127.0.0.1:44742/\n";
 }
 
 const CRPCTable tableRPC;

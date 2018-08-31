@@ -2,7 +2,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The TNX developers
+// Copyright (c) 2018 The MDFY developers
 // Distributed under the MIT/X11 software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -21,18 +21,18 @@ BitcoinUnits::BitcoinUnits(QObject* parent) : QAbstractListModel(parent),
 QList<BitcoinUnits::Unit> BitcoinUnits::availableUnits()
 {
     QList<BitcoinUnits::Unit> unitlist;
-    unitlist.append(TNX);
-    unitlist.append(mTNX);
-    unitlist.append(uTNX);
+    unitlist.append(MDFY);
+    unitlist.append(mMDFY);
+    unitlist.append(uMDFY);
     return unitlist;
 }
 
 bool BitcoinUnits::valid(int unit)
 {
     switch (unit) {
-    case TNX:
-    case mTNX:
-    case uTNX:
+    case MDFY:
+    case mMDFY:
+    case uMDFY:
         return true;
     default:
         return false;
@@ -42,12 +42,12 @@ bool BitcoinUnits::valid(int unit)
 QString BitcoinUnits::id(int unit)
 {
     switch (unit) {
-    case TNX:
-        return QString("TNX");
-    case mTNX:
-        return QString("mTNX");
-    case uTNX:
-        return QString::fromUtf8("uTNX");
+    case MDFY:
+        return QString("MDFY");
+    case mMDFY:
+        return QString("mMDFY");
+    case uMDFY:
+        return QString::fromUtf8("uMDFY");
     default:
         return QString("???");
     }
@@ -57,23 +57,23 @@ QString BitcoinUnits::name(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case TNX:
-            return QString("TNX");
-        case mTNX:
-            return QString("mTNX");
-        case uTNX:
-            return QString::fromUtf8("μTNX");
+        case MDFY:
+            return QString("MDFY");
+        case mMDFY:
+            return QString("mMDFY");
+        case uMDFY:
+            return QString::fromUtf8("μMDFY");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case TNX:
-            return QString("tTNX");
-        case mTNX:
-            return QString("mtTNX");
-        case uTNX:
-            return QString::fromUtf8("μtTNX");
+        case MDFY:
+            return QString("tMDFY");
+        case mMDFY:
+            return QString("mtMDFY");
+        case uMDFY:
+            return QString::fromUtf8("μtMDFY");
         default:
             return QString("???");
         }
@@ -84,23 +84,23 @@ QString BitcoinUnits::description(int unit)
 {
     if (Params().NetworkID() == CBaseChainParams::MAIN) {
         switch (unit) {
-        case TNX:
-            return QString("TNX");
-        case mTNX:
-            return QString("Milli-TNX (1 / 1" THIN_SP_UTF8 "000)");
-        case uTNX:
-            return QString("Micro-TNX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case MDFY:
+            return QString("MDFY");
+        case mMDFY:
+            return QString("Milli-MDFY (1 / 1" THIN_SP_UTF8 "000)");
+        case uMDFY:
+            return QString("Micro-MDFY (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
     } else {
         switch (unit) {
-        case TNX:
-            return QString("TestTNXs");
-        case mTNX:
-            return QString("Milli-TestTNX (1 / 1" THIN_SP_UTF8 "000)");
-        case uTNX:
-            return QString("Micro-TestTNX (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
+        case MDFY:
+            return QString("TestMDFYs");
+        case mMDFY:
+            return QString("Milli-TestMDFY (1 / 1" THIN_SP_UTF8 "000)");
+        case uMDFY:
+            return QString("Micro-TestMDFY (1 / 1" THIN_SP_UTF8 "000" THIN_SP_UTF8 "000)");
         default:
             return QString("???");
         }
@@ -110,11 +110,11 @@ QString BitcoinUnits::description(int unit)
 qint64 BitcoinUnits::factor(int unit)
 {
     switch (unit) {
-    case TNX:
+    case MDFY:
         return 100000000;
-    case mTNX:
+    case mMDFY:
         return 100000;
-    case uTNX:
+    case uMDFY:
         return 100;
     default:
         return 100000000;
@@ -124,11 +124,11 @@ qint64 BitcoinUnits::factor(int unit)
 int BitcoinUnits::decimals(int unit)
 {
     switch (unit) {
-    case TNX:
+    case MDFY:
         return 8;
-    case mTNX:
+    case mMDFY:
         return 5;
-    case uTNX:
+    case uMDFY:
         return 2;
     default:
         return 0;

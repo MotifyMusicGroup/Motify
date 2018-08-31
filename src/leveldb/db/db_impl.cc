@@ -83,7 +83,7 @@ struct DBImpl::CompactionState {
 
 // Fix user-supplied options to be reasonable
 template <class T,class V>
-static void ClipToRange(T* ptr, V minvalue, V maxvalue) {
+static void ClipMotifyge(T* ptr, V minvalue, V maxvalue) {
   if (static_cast<V>(*ptr) > maxvalue) *ptr = maxvalue;
   if (static_cast<V>(*ptr) < minvalue) *ptr = minvalue;
 }
@@ -94,9 +94,9 @@ Options SanitizeOptions(const std::string& dbname,
   Options result = src;
   result.comparator = icmp;
   result.filter_policy = (src.filter_policy != NULL) ? ipolicy : NULL;
-  ClipToRange(&result.max_open_files,    64 + kNumNonTableCacheFiles, 50000);
-  ClipToRange(&result.write_buffer_size, 64<<10,                      1<<30);
-  ClipToRange(&result.block_size,        1<<10,                       4<<20);
+  ClipMotifyge(&result.max_open_files,    64 + kNumNonTableCacheFiles, 50000);
+  ClipMotifyge(&result.write_buffer_size, 64<<10,                      1<<30);
+  ClipMotifyge(&result.block_size,        1<<10,                       4<<20);
   if (result.info_log == NULL) {
     // Open a log file in the same directory as the db
     src.env->CreateDir(dbname);  // In case it does not exist

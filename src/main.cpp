@@ -3,7 +3,7 @@
 // Copyright (c) 2014-2015 The Dash developers
 // Copyright (c) 2015-2017 The PIVX developers
 // Copyright (c) 2017 The Bitcoin Green developers
-// Copyright (c) 2018 The TNX developers
+// Copyright (c) 2018 The MDFY developers
 // Distributed under the MIT software license, see the accompanying
 // file COPYING or http://www.opensource.org/licenses/mit-license.php.
 
@@ -47,7 +47,7 @@ using namespace boost;
 using namespace std;
 
 #if defined(NDEBUG)
-#error "TNX cannot be compiled without assertions."
+#error "MDFY cannot be compiled without assertions."
 #endif
 
 // 6 comes from OPCODE (1) + vch.size() (1) + BIGNUM size (4)
@@ -81,7 +81,7 @@ bool fAlerts = DEFAULT_ALERTS;
 unsigned int nStakeMinAge = 60 * 60;
 int64_t nReserveBalance = 0;
 
-/** Fees smaller than this (in uTNX) are considered zero fee (for relaying and mining)
+/** Fees smaller than this (in uMDFY) are considered zero fee (for relaying and mining)
  * We are ~100 times smaller then bitcoin now (2015-06-23), set minRelayTxFee only 10 times higher
  * so it's still 10 times lower comparing to bitcoin.
  */
@@ -1615,54 +1615,66 @@ double ConvertBitsToDouble(unsigned int nBits)
     return dDiff;
 }
 
+
 int64_t GetBlockValue(int nHeight)
 {
-    
     int64_t nSubsidy = 0;
 
     if (Params().NetworkID() == CBaseChainParams::TESTNET) {
-        if (nHeight < 50 && nHeight > 0)
-            return 1000000 * COIN;
+        if (nHeight < 200 && nHeight > 0)
+            return 250000 * COIN;
     }
 
-    
-    if (nHeight == 1) {
-        nSubsidy = 850000 * COIN; // Premine
-    }
-    else if (nHeight > 1 && nHeight <= 200) { // Premine
-        nSubsidy =  250* COIN; 
-    }
-    else if (nHeight > 200 && nHeight <= 400) {   // Instamine
+    if (nHeight == 0) {
         nSubsidy = 1 * COIN;
+    } else if(nHeight == 1) { 
+        nSubsidy = 1500000 * COIN;
+    } else if (nHeight <= 100) {
+        nSubsidy = 1 * COIN;
+    } else if (nHeight <= 500) {
+	nSubsidy = 3 * COIN;
+    } else if (nHeight <= 800) {
+	nSubsidy = 5 * COIN;
+    } else if (nHeight <= 5000) {
+	nSubsidy = 7 * COIN;
+    } else if (nHeight <= 25000) { 
+        nSubsidy = 20 * COIN;
+    } else if (nHeight <= 190000) {
+        nSubsidy = 24 * COIN;
+    } else if (nHeight <= 380000) {
+	nSubsidy = 26 * COIN;
+    } else if (nHeight <= 570000) {
+        nSubsidy = 30 * COIN;
+    } else if (nHeight <= 760000) {
+        nSubsidy = 24 * COIN;
+    } else if (nHeight <= 950000) {
+        nSubsidy = 24 * COIN;
+    } else if (nHeight <= 1140000) {
+        nSubsidy = 20 * COIN;
+    } else if (nHeight <= 1330000) {
+        nSubsidy = 16 * COIN;
+    } else if (nHeight <= 1520000) {
+        nSubsidy = 12 * COIN;
+    } else if (nHeight <= 1710000) {
+        nSubsidy = 8 * COIN;
+    } else if (nHeight <= 1900000) {
+        nSubsidy = 16 * COIN;
+    } else if (nHeight >= 2090000) {
+        nSubsidy = 8 * COIN;
+    } else if (nHeight >= 2280000) {
+        nSubsidy = 4 * COIN;
+    } else if (nHeight >= 2470000) {
+        nSubsidy = 2 * COIN;
+    } else if (nHeight >= 2660000) {
+	nSubsidy = 1 * COIN;
+    } else if (nHeight >= 2850000) {
+	nSubsidy = 0 * COIN;
+    } else {
+        nSubsidy = 0 * COIN;
     }
-    else if (nHeight > 400 && nHeight <= 1499) { // Instamine
-        nSubsidy = 1 * COIN; 
-    }
-    else if (nHeight > 1499 && nHeight <= 210000) { // Full Rewards 
-        nSubsidy = 18 * COIN; 
-    }
-    else if (nHeight > 210000 && nHeight <= 420000) {
-        nSubsidy = 24 * COIN; 
-    }
-    else if (nHeight > 420000 && nHeight <= 630000) {
-        nSubsidy = 21 * COIN;
-    }
-    else if (nHeight > 630000 && nHeight <= 840000) {
-        nSubsidy = 18 * COIN; 
-    }
-    else if (nHeight > 840000 && nHeight <= 1050000) {
-        nSubsidy = 15 * COIN; 
-    }
-    else if (nHeight > 1050000 && nHeight <= 1260000) {
-        nSubsidy = 5 * COIN; 
-    }
-    else {
-    nSubsidy = 0 * COIN; 
-    }
-    
-    
-	return nSubsidy;
+    return nSubsidy;
 }
+
 int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCount)
 {
     int64_t ret = 0;
@@ -1672,8 +1684,8 @@ int64_t GetMasternodePayment(int nHeight, int64_t blockValue, int nMasternodeCou
             return 0;
     }
 
-    if (nHeight > 1) {
-        ret = blockValue * .65;
+    if (nHeight > 100) {
+        ret = blockValue * .60;
     }
 
     return ret;
@@ -2065,7 +2077,7 @@ static CCheckQueue<CScriptCheck> scriptcheckqueue(128);
 
 void ThreadScriptCheck()
 {
-    RenameThread("TNX-scriptch");
+    RenameThread("MDFY-scriptch");
     scriptcheckqueue.Thread();
 }
 
@@ -3161,7 +3173,7 @@ bool CheckBlock(const CBlock& block, CValidationState& state, bool fCheckPOW, bo
                 nHeight = (*mi).second->nHeight + 1;
         }
 
-        // TNX
+        // MDFY
         // It is entierly possible that we don't have enough data and this could fail
         // (i.e. the block could indeed be valid). Store the block for later consideration
         // but issue an initial reject message.
@@ -4594,7 +4606,7 @@ bool static ProcessMessage(CNode* pfrom, string strCommand, CDataStream& vRecv, 
             return false;
         }
 
-        // TNX: We use certain sporks during IBD, so check to see if they are
+        // MDFY: We use certain sporks during IBD, so check to see if they are
         // available. If not, ask the first peer connected for them.
         bool fMissingSporks = !pSporkDB->SporkExists(SPORK_14_NEW_PROTOCOL_ENFORCEMENT) &&
                 !pSporkDB->SporkExists(SPORK_15_NEW_PROTOCOL_ENFORCEMENT_2);

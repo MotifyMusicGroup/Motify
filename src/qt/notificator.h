@@ -6,7 +6,7 @@
 #define BITCOIN_QT_NOTIFICATOR_H
 
 #if defined(HAVE_CONFIG_H)
-#include "config/TNX-config.h"
+#include "config/MDFY-config.h"
 #endif
 
 #include <QIcon>

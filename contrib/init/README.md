@@ -1,10 +1,10 @@
 Sample configuration files for:
 
-SystemD: TNXd.service
-Upstart: TNXd.conf
-OpenRC:  TNXd.openrc
-         TNXd.openrcconf
-CentOS:  TNXd.init
+SystemD: MDFYd.service
+Upstart: MDFYd.conf
+OpenRC:  MDFYd.openrc
+         MDFYd.openrcconf
+CentOS:  MDFYd.init
 
 have been made available to assist packagers in creating node packages here.
 
