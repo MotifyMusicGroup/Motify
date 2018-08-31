@@ -1,4 +1,4 @@
-MDFY Core integration/staging repository
+Motify Music Group
 =======================================
 Official Website - https://motify.online <br>
 Alpha release - https://motifyapp.io <br>
