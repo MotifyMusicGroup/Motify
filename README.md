@@ -1,10 +1,10 @@
 MDFY Core integration/staging repository
 =======================================
-Official Website - https://motify.online
-Alpha release - https://motifyapp.io
-Bitcointalk - 
-Discord - 
-Twitter -
+Official Website - https://motify.online <br>
+Alpha release - https://motifyapp.io <br>
+Bitcointalk - <br>
+Discord - <br>
+Twitter - <br>
 
 
 ### Specifications
