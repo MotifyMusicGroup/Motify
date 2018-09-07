@@ -1,10 +1,8 @@
 Motify Music Group
 =======================================
-Official Website - https://motify.online <br>
+Official Website - https://music.motifyapp.io <br>
 Alpha release - https://motifyapp.io <br>
-Bitcointalk - <br>
-Discord - <br>
-Twitter - <br>
+
 
 
 ### Specifications
